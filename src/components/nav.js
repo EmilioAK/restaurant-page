@@ -1,34 +1,35 @@
+function renderNavItem(props) {
+  const item = document.createElement('li');
+  item.textContent = props.textContent;
+  item.addEventListener('click', props.onClick);
+  return item;
+}
+
 export default () => {
-  const nav = document.createElement('nav');
-  const ul = document.createElement('ul');
+  function render(props) {
+    const nav = document.createElement('nav');
+    const ul = document.createElement('ul');
+    
+    const home = renderNavItem({
+      textContent: 'Home',
+      onClick: props.displayHome
+    })
+    const menu = renderNavItem({
+      textContent: "Menu",
+      onClick: props.displayMenu
+    })
+    const contact = renderNavItem({
+      textContent: "Contact",
+      onClick: props.displayContact
+    })
   
-  const home = document.createElement('li');
-  home.textContent = 'Home';
-  home.addEventListener('click', displayHome)
+    ul.appendChild(home);
+    ul.appendChild(menu);
+    ul.appendChild(contact);
   
-  const menu = document.createElement('li');
-  menu.textContent = 'Menu';
-  menu.addEventListener('click', displayMenu)
-
-  const contact = document.createElement('li');
-  contact.textContent = 'Contact';
-  contact.addEventListener('click', displayContact)
-
-  ul.appendChild(home);
-  ul.appendChild(menu);
-  ul.appendChild(contact);
-
-  nav.appendChild(ul);
-
-  function displayHome(f) {
-    f();
+    nav.appendChild(ul);
+    
+    return nav
   }
-  function displayMenu(f) {
-    f();
-  }
-  function displayContact(f) {
-    f();
-  }
-
-  return { nav, displayHome, displayMenu, displayContact }
+  return { render }
 }
