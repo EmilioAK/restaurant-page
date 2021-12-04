@@ -1,3 +1,4 @@
+import "./main.css";
 import nav from "./components/nav.js";
 import home from "./components/home.js";
 import menu from "./components/menu.js"
